@@ -1,4 +1,11 @@
-from a_import import *
+import sys, requests, json, webbrowser, time, socket
+
+# urllibやrequestsがなぜか高速になるおまじない
+def getAddrInfoWrapper(host, port, family=0, socktype=0, proto=0, flags=0):
+    return origGetAddrInfo(host, port, socket.AF_INET, socktype, proto, flags)
+
+origGetAddrInfo = socket.getaddrinfo
+socket.getaddrinfo = getAddrInfoWrapper
 
 class Tsumanne:
 
@@ -62,5 +69,14 @@ def double(url):
     time.sleep(1)
     ftbucket(url)
 
+def repl():
+    while 1:
+        print('URL(img/may) >', end = '')
+        a = input()
+        double(a)
+
 if __name__ == '__main__':
-    double(sys.argv[1])
+    if len(sys.argv) >= 2:
+        double(sys.argv[1])
+    else:
+        repl()

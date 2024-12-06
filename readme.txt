@@ -1,2 +1,1 @@
-python ftsave.py {URL}
-でつまんね。とftbucketにスレを保存するだけ
+つまんね。とftbucketにスレを保存する
